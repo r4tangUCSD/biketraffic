@@ -19,6 +19,31 @@ html, body {
     align-items: center;     /* Center vertically */
 }
      
+label {
+    margin-left: auto;
+}
+
+header {
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+    width: 100%;
+}
+
+#time-filter {
+    display: block;
+    margin-top: 0.5em;
+}
+
+#selected-time, #any-time {
+    display: block;
+}
+
+#any-time {
+    color: #888;
+    font-style: italic;
+}
+
 #map {
     width: 100%;    /* Adjust width to your desired size */
     height: 100%;   /* Adjust height to your desired size */
@@ -34,9 +59,39 @@ html, body {
     pointer-events: none;
 }
 
-svg.circle  {
-    fill: steelblue;
+circle {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+    fill: var(--color);
     fill-opacity: 60%;
     stroke: white;
     pointer-events: auto;
+}
+
+.legend {
+    display: flex;
+    gap: 1em;
+    margin-block: 1em;
+}
+
+.legend > div {
+    flex: 1;
+    padding: 0.5em 1em;
+    text-align: center;
+    background-color: var(--color);
+    color: white;
+    border-radius: 4px;
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+    background-color: var(--color);
 }
